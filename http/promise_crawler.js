@@ -1,5 +1,5 @@
 var http=require('http')
-var Promise=require('Promise')
+var Promise=require('bluebird')
 var cheerio=require('cheerio')
 var baseUrl='http://www.imooc.com/learn/348'
 //var url='http://www.imooc.com/learn/348'
@@ -22,7 +22,7 @@ function filterChapters(html){
 	// 	}]
 		
 	// }
-}
+//}
 
 	var courseData={
 		title:title,
@@ -106,15 +106,14 @@ videoIds.forEach(function(id){
 Promise
 	.all([])
 	.then(function(pages){
-		var courseData=[]
+		var coursesData=[]
 		pages.forEach(function(html){
 			var course=filterChapters(html)
-
-			courseData.push(course)
+			coursesData.push(course)
 		})
-		courseData.sort(function(a,b){
+		coursesData.sort(function(a,b){
 			return a.number<b.number
 		})
 
-		printCourseInfo(courseData)
+		printCourseInfo(coursesData)
 	})
