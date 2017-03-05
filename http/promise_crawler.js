@@ -106,14 +106,15 @@ videoIds.forEach(function(id){
 Promise
 	.all([])
 	.then(function(pages){
-		var coursesData=[]
+		var courseData=[]
 		pages.forEach(function(html){
 			var course=filterChapters(html)
-			coursesData.push(course)
+
+			courseData.push(course)
 		})
-		coursesData.sort(function(a,b){
+		courseData.sort(function(a,b){
 			return a.number<b.number
 		})
 
-		printCourseInfo(coursesData)
+		printCourseInfo(courseData)
 	})
